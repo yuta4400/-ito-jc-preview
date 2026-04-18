@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊東青年会議所 ウェブサイトデザインプレビュー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background: #f3f5f8;
+  color: #1a2744;
+  line-height: 1.6;
+  padding: 40px 16px 80px;
+  -webkit-font-smoothing: antialiased;
+}
+.preview-header {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.preview-header h1 {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #002d73;
+  margin-bottom: 8px;
+}
+.preview-header p {
+  font-size: 12px;
+  color: #6b7a92;
+  letter-spacing: 0.18em;
+}
+.preview-note {
+  max-width: 680px;
+  margin: 0 auto 48px;
+  padding: 16px 20px;
+  background: #fff;
+  border: 0.5px solid rgba(0,61,165,0.12);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #4a5875;
+  line-height: 1.8;
+}
+.preview-note b { color: #00a8b8; font-weight: 500; letter-spacing: 0.12em; display: block; margin-bottom: 6px; font-size: 11px; }
+.preview-stack { display: flex; flex-direction: column; gap: 48px; align-items: center; }
+.preview-device { width: 100%; max-width: 900px; }
+.preview-label {
+  text-align: center;
+  font-size: 11px;
+  color: #6b7a92;
+  letter-spacing: 0.25em;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.preview-label span { color: #00a8b8; margin-right: 8px; }
+
+/* ===== Mockup styles ===== */
+.it-page {
+  background: #fff;
+  overflow: hidden;
+  color: #002d73;
+  line-height: 1.6;
+  box-shadow: 0 4px 20px rgba(0,20,60,0.08);
+  margin: 0 auto;
+}
+.it-page-m { width: 360px; border-radius: 24px; }
+.it-page-p { width: 100%; max-width: 900px; border-radius: 10px; }
+.it-head {
+  height: 56px; padding: 0 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; border-bottom: 0.5px solid rgba(0,61,165,0.12);
+}
+.it-head-p { height: 68px; padding: 0 36px; }
+.it-logo { display: flex; align-items: center; gap: 10px; }
+.it-lmk {
+  width: 34px; height: 34px; background: #003da5;
+  border-radius: 4px; display: flex; align-items: center;
+  justify-content: center; color: #fff; font-size: 9px;
+  border: 1px dashed #00c2d4; font-weight: 500;
+}
+.it-ltxt { line-height: 1.2; }
+.it-ltxt b { font-size: 12.5px; font-weight: 500; color: #002d73; display: block; letter-spacing: 0.04em; }
+.it-ltxt small { font-size: 9px; color: #0086a0; letter-spacing: 0.18em; }
+.it-burg {
+  width: 38px; height: 38px; background: rgba(0,61,165,0.06);
+  border: 0.5px solid rgba(0,61,165,0.22); border-radius: 4px;
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: center; gap: 3px;
+}
+.it-burg span { width: 15px; height: 1.5px; background: #003da5; display: block; }
+.it-nav-p { display: flex; gap: 18px; font-size: 11px; align-items: center; }
+.it-nav-p a {
+  color: #002d73; text-decoration: none; letter-spacing: 0.08em;
+  display: flex; flex-direction: column; align-items: center; line-height: 1.2;
+}
+.it-nav-p a small { font-size: 8.5px; color: #0086a0; letter-spacing: 0.18em; margin-top: 3px; font-weight: 500; }
+.it-nav-cta {
+  background: #003da5; color: #fff !important;
+  padding: 9px 16px; border-radius: 2px; font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.it-nav-cta small { color: #7fd3db !important; }
+.it-hero { position: relative; overflow: hidden; }
+.it-hero-m { height: 560px; }
+.it-hero-p { height: 520px; }
+.it-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.it-lighten {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.55) 100%);
+  pointer-events: none;
+}
+.it-hero-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; padding: 0 24px 60px; }
+.it-hero-content-p { padding: 0 60px 60px; }
+.it-badge {
+  display: inline-flex; align-items: center; gap: 9px; margin-bottom: 14px;
+  background: rgba(255,255,255,0.85); border: 0.5px solid rgba(0,61,165,0.2);
+  padding: 7px 12px 7px 10px; border-radius: 2px;
+}
+.it-ring {
+  width: 13px; height: 13px; border-radius: 50%;
+  border: 1.5px solid #d97706; position: relative; flex-shrink: 0;
+}
+.it-ring::after {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 3px; height: 3px; background: #d97706;
+  border-radius: 50%; transform: translate(-50%, -50%);
+}
+.it-badge b { font-size: 12px; color: #002d73; letter-spacing: 0.16em; font-weight: 500; white-space: nowrap; }
+.it-badge-dot { width: 3px; height: 3px; background: #0086a0; border-radius: 50%; opacity: 0.6; flex-shrink: 0; }
+.it-badge-div { width: 0.5px; height: 13px; background: rgba(0,61,165,0.3); flex-shrink: 0; }
+.it-badge span { font-size: 10px; color: #0086a0; letter-spacing: 0.2em; white-space: nowrap; }
+.it-badge strong { font-size: 10px; color: #d97706; letter-spacing: 0.2em; font-weight: 500; white-space: nowrap; }
+.it-badge-m strong { font-size: 9.5px; letter-spacing: 0.15em; }
+.it-rule { width: 40px; height: 1.5px; background: #00a8b8; margin-bottom: 14px; }
+.it-title-m { font-size: 40px; font-weight: 500; letter-spacing: 0.04em; line-height: 1.12; margin: 0 0 12px; color: #002d73; }
+.it-title-p { font-size: 64px; font-weight: 500; letter-spacing: 0.04em; line-height: 1.05; margin: 0 0 14px; color: #002d73; }
+.it-tp { display: inline-block; }
+.it-tac { color: #00a8b8; }
+.it-sub { font-size: 13px; color: #00547a; margin: 0 0 4px; letter-spacing: 0.08em; line-height: 1.7; font-weight: 500; }
+.it-sub-p { font-size: 16px; color: #00547a; margin: 0 0 6px; letter-spacing: 0.08em; line-height: 1.7; font-weight: 500; }
+.it-en { font-size: 9px; color: #0086a0; letter-spacing: 0.22em; margin: 0 0 22px; font-weight: 500; }
+.it-en-p { font-size: 10px; color: #0086a0; letter-spacing: 0.3em; margin: 0 0 28px; font-weight: 500; }
+.it-cta { display: flex; gap: 10px; }
+.it-cta-p { display: flex; gap: 14px; }
+.it-btn {
+  flex: 1; padding: 14px 10px; text-align: center;
+  font-size: 12px; letter-spacing: 0.12em; font-weight: 500;
+  cursor: pointer; border: 0.5px solid transparent; background: none;
+  color: inherit; font-family: inherit; border-radius: 2px;
+}
+.it-btn-p { padding: 16px 30px; min-width: 180px; font-size: 13px; flex: 0 0 auto; }
+.it-btn-pri { background: #003da5; color: #fff; }
+.it-btn-ghost { border-color: #003da5; color: #003da5; background: rgba(255,255,255,0.7); }
+.it-ar { display: inline-block; margin-left: 6px; letter-spacing: 0; }
+.it-sec { padding: 56px 24px; background: #fff; }
+.it-sec-p { padding: 80px 60px; }
+.it-sec-alt { background: #f4faff; }
+.it-sec-kick { display: flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: 0.3em; color: #00a8b8; font-weight: 500; margin-bottom: 14px; }
+.it-sec-kick::before { content: ""; width: 20px; height: 1px; background: #00a8b8; }
+.it-sec-head { font-size: 24px; font-weight: 500; letter-spacing: 0.04em; color: #002d73; margin: 0 0 6px; line-height: 1.4; }
+.it-sec-head-p { font-size: 34px; font-weight: 500; letter-spacing: 0.04em; color: #002d73; margin: 0 0 10px; line-height: 1.3; }
+.it-sec-sub { font-size: 10px; color: #0086a0; letter-spacing: 0.24em; margin: 0 0 28px; font-weight: 500; }
+.it-sec-sub-p { font-size: 11px; color: #0086a0; letter-spacing: 0.28em; margin: 0 0 40px; font-weight: 500; }
+.it-pres { display: flex; flex-direction: column; gap: 22px; }
+.it-pres-p { flex-direction: row; gap: 48px; align-items: flex-start; max-width: 900px; }
+.it-pres-img {
+  background: #e5edf5; width: 100%; aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+  color: #7a8ba4; font-size: 10px; letter-spacing: 0.25em; font-weight: 500;
+}
+.it-pres-img-p { width: 280px; flex-shrink: 0; aspect-ratio: 4/5; }
+.it-pres-title { font-size: 20px; font-weight: 500; color: #002d73; margin: 0 0 12px; line-height: 1.4; letter-spacing: 0.03em; }
+.it-pres-title-p { font-size: 26px; margin-bottom: 16px; }
+.it-pres-meta { font-size: 11px; color: #0086a0; letter-spacing: 0.15em; margin: 0 0 14px; font-weight: 500; }
+.it-pres-body { font-size: 13px; color: #1a2744; line-height: 1.9; margin: 0 0 22px; }
+.it-pres-body-p { font-size: 14.5px; line-height: 2; }
+.it-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: #003da5; letter-spacing: 0.12em; font-weight: 500; text-decoration: none; border-bottom: 0.5px solid #003da5; padding-bottom: 4px; }
+.it-about-intro { font-size: 13.5px; color: #1a2744; line-height: 2; margin: 0 0 30px; }
+.it-about-intro-p { font-size: 14.5px; line-height: 2; margin-bottom: 40px; max-width: 640px; }
+.it-pillars { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.it-pillars-p { grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; }
+.it-pil { background: #fff; border: 0.5px solid rgba(0,61,165,0.12); padding: 22px 20px; border-radius: 4px; }
+.it-pil-num { font-size: 10px; color: #00a8b8; letter-spacing: 0.3em; font-weight: 500; margin-bottom: 8px; }
+.it-pil-ja { font-size: 22px; font-weight: 500; color: #002d73; margin: 0 0 4px; letter-spacing: 0.08em; }
+.it-pil-en { font-size: 9px; color: #0086a0; letter-spacing: 0.28em; margin: 0 0 14px; font-weight: 500; }
+.it-pil-desc { font-size: 12.5px; color: #1a2744; line-height: 1.8; margin: 0; }
+.it-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; padding-top: 32px; border-top: 0.5px solid rgba(0,61,165,0.12); }
+.it-stats-p { max-width: 640px; margin-top: 44px; padding-top: 40px; }
+.it-st { text-align: center; }
+.it-st-n { font-size: 28px; font-weight: 500; color: #003da5; letter-spacing: 0.02em; line-height: 1; }
+.it-st-n-p { font-size: 34px; }
+.it-st-u { font-size: 10px; color: #0086a0; letter-spacing: 0.15em; margin-top: 6px; font-weight: 500; }
+.it-st-l { font-size: 10.5px; color: #00547a; letter-spacing: 0.2em; margin-top: 6px; font-weight: 500; }
+.it-proj-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.it-proj-grid-p { grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; }
+.it-proj { background: #fff; border: 0.5px solid rgba(0,61,165,0.12); border-radius: 4px; overflow: hidden; }
+.it-proj-img { aspect-ratio: 16/10; background: #dde6f0; display: flex; align-items: center; justify-content: center; color: #7a8ba4; font-size: 9px; letter-spacing: 0.25em; position: relative; }
+.it-proj-cat { position: absolute; top: 10px; left: 10px; background: rgba(0,61,165,0.85); color: #fff; font-size: 9px; padding: 3px 8px; letter-spacing: 0.14em; border-radius: 2px; font-weight: 500; }
+.it-proj-body { padding: 16px 18px 20px; }
+.it-proj-date { font-size: 10px; color: #0086a0; letter-spacing: 0.18em; margin: 0 0 6px; font-weight: 500; }
+.it-proj-title { font-size: 13.5px; color: #002d73; font-weight: 500; margin: 0; line-height: 1.55; letter-spacing: 0.02em; }
+.it-news { display: flex; flex-direction: column; gap: 0; max-width: 900px; }
+.it-news-row { display: flex; gap: 14px; padding: 18px 0; border-top: 0.5px solid rgba(0,61,165,0.12); align-items: flex-start; }
+.it-news-row:last-child { border-bottom: 0.5px solid rgba(0,61,165,0.12); }
+.it-news-date { font-size: 10.5px; color: #0086a0; letter-spacing: 0.15em; font-weight: 500; min-width: 68px; margin-top: 3px; }
+.it-news-cat { font-size: 9px; color: #003da5; border: 0.5px solid #003da5; padding: 2px 8px; letter-spacing: 0.14em; font-weight: 500; margin-top: 2px; flex-shrink: 0; }
+.it-news-title { font-size: 13.5px; color: #002d73; line-height: 1.55; letter-spacing: 0.02em; flex: 1; }
+.it-news-foot { margin-top: 28px; max-width: 900px; text-align: right; }
+.it-ig-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; }
+.it-ig-handle { font-size: 12px; color: #00a8b8; letter-spacing: 0.14em; font-weight: 500; }
+.it-ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.it-ig-grid-p { grid-template-columns: repeat(6, 1fr); max-width: 1100px; }
+.it-ig-cell { aspect-ratio: 1; background: #d5e6f2; position: relative; overflow: hidden; }
+.it-ig-cell::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(110,198,216,0.5), rgba(127,211,219,0.3)); }
+.it-ig-cell span { position: absolute; bottom: 6px; left: 8px; color: #fff; font-size: 9.5px; letter-spacing: 0.1em; font-weight: 500; z-index: 1; }
+.it-cta-sec { padding: 56px 28px; background: #003da5; color: #fff; text-align: center; }
+.it-cta-sec-p { padding: 80px 60px; }
+.it-cta-kick { font-size: 10px; color: #7fd3db; letter-spacing: 0.35em; margin-bottom: 14px; font-weight: 500; }
+.it-cta-head { font-size: 26px; font-weight: 500; letter-spacing: 0.06em; margin: 0 0 12px; line-height: 1.4; color: #fff; }
+.it-cta-head-p { font-size: 38px; margin-bottom: 16px; }
+.it-cta-body { font-size: 13px; color: #b8d2f0; line-height: 1.9; margin: 0 0 26px; letter-spacing: 0.04em; }
+.it-cta-body-p { font-size: 14.5px; max-width: 600px; margin: 0 auto 34px; }
+.it-cta-btn { display: inline-block; padding: 17px 36px; background: #00a8b8; color: #002d73; font-size: 13px; letter-spacing: 0.15em; font-weight: 500; border-radius: 2px; text-decoration: none; }
+.it-foot { background: #001d4a; color: rgba(255,255,255,0.75); padding: 48px 24px 24px; font-size: 11px; }
+.it-foot-p { padding: 64px 60px 28px; }
+.it-foot-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.it-foot-grid-p { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; max-width: 1200px; margin: 0 auto; }
+.it-foot-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.it-foot-logo .it-lmk { background: #fff; color: #003da5; }
+.it-foot-logo b { color: #fff; font-size: 13.5px; font-weight: 500; display: block; }
+.it-foot-logo small { color: #7fd3db; font-size: 9px; letter-spacing: 0.2em; }
+.it-foot p { margin: 0 0 4px; line-height: 1.75; }
+.it-foot-h { font-size: 10px; color: #7fd3db; letter-spacing: 0.22em; margin: 0 0 12px; font-weight: 500; }
+.it-foot a { color: rgba(255,255,255,0.75); text-decoration: none; display: block; padding: 4px 0; font-size: 11.5px; letter-spacing: 0.05em; }
+.it-foot-sns { display: flex; gap: 10px; margin-top: 14px; }
+.it-foot-sns a { width: 34px; height: 34px; border: 0.5px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; padding: 0; }
+.it-foot-bot { border-top: 0.5px solid rgba(255,255,255,0.12); margin-top: 36px; padding-top: 18px; font-size: 10px; color: rgba(255,255,255,0.5); text-align: center; letter-spacing: 0.12em; }
+.preview-footer { max-width: 680px; margin: 60px auto 0; text-align: center; font-size: 11px; color: #6b7a92; line-height: 1.8; padding: 20px; border-top: 0.5px solid rgba(0,61,165,0.12); }
+
+@media (max-width: 920px) {
+  .it-page-p { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="preview-header">
+  <h1>伊東青年会議所 ウェブサイトデザインプレビュー</h1>
+  <p>2026 YEAR INITIAL MOCKUP · v1</p>
+</div>
+
+<div class="preview-note">
+  <b>このプレビューについて</b>
+  これは一般社団法人 伊東青年会議所のウェブサイトリニューアルに向けた初期モックアップです。下記のスマートフォン版とデスクトップ版は同じコンテンツを異なるレイアウトで表示しています。写真は後日実写に差し替え予定のプレースホルダで、創立年・会員数・理事長氏名などは仮情報です。2026年度スローガン「SATISFACTION」をテーマに、大室山のお椀型シルエットと城ヶ崎の溶岩海岸を構図に取り入れています。
+</div>
+
+<div class="preview-stack">
+
+<div class="preview-device">
+<div class="preview-label"><span>●</span>MOBILE / 375PX · FULL PAGE</div>
+<div class="it-page it-page-m">
+<header class="it-head">
+<div class="it-logo"><div class="it-lmk">LOGO</div><div class="it-ltxt"><b>伊東青年会議所</b><small>ITO JC</small></div></div>
+<button class="it-burg" aria-label="menu"><span></span><span></span><span></span></button>
+</header>
+
+<section class="it-hero it-hero-m">
+<svg class="it-scene" viewBox="0 0 360 560" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="skM" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#f4faff"/><stop offset="40%" stop-color="#b5dfff"/>
+<stop offset="75%" stop-color="#7ac8ee"/><stop offset="100%" stop-color="#59b6e0"/>
+</linearGradient></defs>
+<rect width="360" height="225" fill="url(#skM)"/>
+<circle cx="290" cy="92" r="48" fill="#fff5d8" opacity="0.55"/>
+<circle cx="290" cy="92" r="30" fill="#ffd76b" opacity="0.92"/>
+<ellipse cx="75" cy="135" rx="48" ry="8" fill="#fff" opacity="0.95"/>
+<ellipse cx="100" cy="138" rx="30" ry="6" fill="#fff" opacity="0.85"/>
+<ellipse cx="195" cy="172" rx="36" ry="7" fill="#fff" opacity="0.8"/>
+<line x1="65" y1="62" x2="82" y2="73" stroke="#fff" stroke-width="1.3" opacity="0.85"/>
+<circle cx="84" cy="74" r="1.4" fill="#fff"/>
+<path d="M 0,205 Q 60,185 115,205 Q 145,220 145,225 L 0,225 Z" fill="#8ec9dc" opacity="0.85"/>
+<path d="M -10,225 C 20,225 60,162 105,160 C 150,162 185,225 200,225 L 360,225 L 360,232 L -10,232 Z" fill="#6ec6d8"/>
+<rect y="225" width="360" height="335" fill="#6ec6d8"/>
+<path d="M 0,245 Q 60,240 120,245 T 240,245 T 360,245 L 360,260 L 0,260 Z" fill="#fff" opacity="0.3"/>
+<path d="M 0,280 Q 80,275 160,280 T 320,280 T 360,280 L 360,295 L 0,295 Z" fill="#fff" opacity="0.22"/>
+<path d="M 0,320 Q 60,315 120,320 T 240,320 T 360,320 L 360,335 L 0,335 Z" fill="#fff" opacity="0.18"/>
+<path d="M 0,365 Q 80,360 160,365 T 320,365 T 360,365 L 360,383 L 0,383 Z" fill="#fff" opacity="0.15"/>
+<path d="M 0,415 Q 100,410 200,415 T 360,415 L 360,435 L 0,435 Z" fill="#fff" opacity="0.12"/>
+<path d="M 0,475 Q 120,470 240,475 T 360,475 L 360,495 L 0,495 Z" fill="#fff" opacity="0.1"/>
+<path d="M -10,225 C 20,225 60,162 105,160 C 150,162 185,225 200,225 L 200,230 C 175,228 145,206 120,188 C 108,178 105,172 105,166 Z" fill="#a9d188" opacity="0.8"/>
+<path d="M -10,225 C 20,225 60,162 105,160 L 105,172 C 78,183 52,205 25,220 C 10,225 0,225 -10,225 Z" fill="#4e7d43" opacity="0.3"/>
+</svg>
+<div class="it-lighten"></div>
+<div class="it-hero-content">
+<div class="it-badge it-badge-m">
+<div class="it-ring"></div><b>2026</b><span class="it-badge-dot"></span><strong>SATISFACTION</strong>
+</div>
+<div class="it-rule"></div>
+<h1 class="it-title-m"><span class="it-tp">まちを、</span><span class="it-tp"><span class="it-tac">動</span>かす。</span></h1>
+<p class="it-sub">今、ここから未来が動き出す。</p>
+<p class="it-en">JUNIOR CHAMBER INTERNATIONAL ITO</p>
+<div class="it-cta">
+<button class="it-btn it-btn-pri">入会案内<span class="it-ar">→</span></button>
+<button class="it-btn it-btn-ghost">お問合せ</button>
+</div>
+</div>
+</section>
+
+<section class="it-sec">
+<div class="it-sec-kick">PRESIDENT'S MESSAGE</div>
+<h2 class="it-sec-head">満たされるまちを、<br>この手で。</h2>
+<p class="it-sec-sub">2026年度 理事長所信</p>
+<div class="it-pres">
+<div class="it-pres-img">PORTRAIT</div>
+<div>
+<div class="it-pres-meta">2026年度 第◯代 理事長　◯◯ ◯◯</div>
+<p class="it-pres-body">大室山から望む伊豆の海、城ヶ崎に打ち寄せる波、温泉街の湯けむり——伊東は、誰もがふるさとと呼びたくなる景色と情感に満ちたまちです。時代の流れは急速で、私たちの世代が動かなければ、このまちの価値は静かに摩耗してしまう。SATISFACTION——満たされるまちの条件とは何か。その問いに仲間と向き合い、答えを紡ぐ一年にします。</p>
+<a href="#" class="it-link">所信全文を読む<span>→</span></a>
+</div>
+</div>
+</section>
+
+<section class="it-sec it-sec-alt">
+<div class="it-sec-kick">ABOUT US</div>
+<h2 class="it-sec-head">伊東から、<br>志で動き出す青年たち。</h2>
+<p class="it-sec-sub">伊東青年会議所について</p>
+<p class="it-about-intro">1949年に始まったJC運動は「明るい豊かな社会」の実現を掲げ、全国へ広がりました。伊東青年会議所は、その志を受け継ぎ、20〜40歳の青年経済人が地域の未来のために集う一般社団法人です。</p>
+<div class="it-pillars">
+<div class="it-pil"><div class="it-pil-num">01</div><div class="it-pil-ja">修練</div><div class="it-pil-en">TRAINING</div><p class="it-pil-desc">青年らしい純粋な情熱と実践を通じて、社会に求められるリーダーとして自らを鍛える場。</p></div>
+<div class="it-pil"><div class="it-pil-num">02</div><div class="it-pil-ja">奉仕</div><div class="it-pil-en">SERVICE</div><p class="it-pil-desc">伊東の地域課題に、青年ならではの行動力とスピードで応える。成果ではなく、汗を流す覚悟。</p></div>
+<div class="it-pil"><div class="it-pil-num">03</div><div class="it-pil-ja">友情</div><div class="it-pil-en">FRIENDSHIP</div><p class="it-pil-desc">業種も立場も越えて同志となる、生涯つづく仲間との出会いがここにある。</p></div>
+</div>
+<div class="it-stats">
+<div class="it-st"><div class="it-st-n">1970</div><div class="it-st-u">FOUNDED</div><div class="it-st-l">創立（仮）</div></div>
+<div class="it-st"><div class="it-st-n">30<span style="font-size:14px">名</span></div><div class="it-st-u">MEMBERS</div><div class="it-st-l">会員数（仮）</div></div>
+<div class="it-st"><div class="it-st-n">20+</div><div class="it-st-u">PROJECTS</div><div class="it-st-l">年間事業数</div></div>
+</div>
+</section>
+
+<section class="it-sec">
+<div class="it-sec-kick">OUR PROJECTS</div>
+<h2 class="it-sec-head">伊東の未来をつくる、<br>年間の活動。</h2>
+<p class="it-sec-sub">事業・イベント</p>
+<div class="it-proj-grid">
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">講演会</span></div><div class="it-proj-body"><div class="it-proj-date">2026.04.26</div><div class="it-proj-title">ITO FUTURE JAM 〜今、ここから未来が動きだす〜</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">組織</span></div><div class="it-proj-body"><div class="it-proj-date">2026.04.07</div><div class="it-proj-title">2026年度 会頭公式訪問</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">ブロック</span></div><div class="it-proj-body"><div class="it-proj-date">2026.02.06</div><div class="it-proj-title">静岡ブロック協議会 第1回会員会議所会議</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">地域連携</span></div><div class="it-proj-body"><div class="it-proj-date">2026.04.07</div><div class="it-proj-title">伊東ロータリークラブ 創立70周年記念式典</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">例会</span></div><div class="it-proj-body"><div class="it-proj-date">2025.12.13</div><div class="it-proj-title">12月例会・卒業式</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">青少年</span></div><div class="it-proj-body"><div class="it-proj-date">2025.08.20</div><div class="it-proj-title">わんぱく相撲 伊東場所（仮）</div></div></div>
+</div>
+</section>
+
+<section class="it-sec it-sec-alt">
+<div class="it-sec-kick">NEWS</div>
+<h2 class="it-sec-head">新着情報</h2>
+<p class="it-sec-sub">活動のお知らせ</p>
+<div class="it-news">
+<div class="it-news-row"><div class="it-news-date">2026.04.07</div><div class="it-news-cat">お知らせ</div><div class="it-news-title">【再案内】ITO FUTURE JAM 講演会開催のお知らせ</div></div>
+<div class="it-news-row"><div class="it-news-date">2026.04.07</div><div class="it-news-cat">報告</div><div class="it-news-title">2026年度 会頭公式訪問を実施しました</div></div>
+<div class="it-news-row"><div class="it-news-date">2026.02.06</div><div class="it-news-cat">会議</div><div class="it-news-title">静岡ブロック協議会 第1回会員会議所会議 開催</div></div>
+</div>
+<div class="it-news-foot"><a href="#" class="it-link">お知らせ一覧<span>→</span></a></div>
+</section>
+
+<section class="it-sec">
+<div class="it-ig-head">
+<div><div class="it-sec-kick">INSTAGRAM</div><div class="it-ig-handle">@itojc</div></div>
+<a href="#" class="it-link">FOLLOW<span>↗</span></a>
+</div>
+<div class="it-ig-grid">
+<div class="it-ig-cell"><span>#大室山</span></div>
+<div class="it-ig-cell"><span>#例会</span></div>
+<div class="it-ig-cell"><span>#伊東</span></div>
+<div class="it-ig-cell"><span>#城ヶ崎</span></div>
+<div class="it-ig-cell"><span>#JC</span></div>
+<div class="it-ig-cell"><span>#按針祭</span></div>
+</div>
+</section>
+
+<section class="it-cta-sec">
+<div class="it-cta-kick">JOIN US</div>
+<h2 class="it-cta-head">共に、このまちを動かす。</h2>
+<p class="it-cta-body">20〜40歳の青年経済人。伊東市内および近隣で活動する方。<br>あなたの一歩が、伊東の未来を動かします。</p>
+<a href="#" class="it-cta-btn">入会説明会に参加する →</a>
+</section>
+
+<footer class="it-foot">
+<div class="it-foot-grid">
+<div>
+<div class="it-foot-logo"><div class="it-lmk">LOGO</div><div><b>伊東青年会議所</b><small>JCI ITO</small></div></div>
+<p>〒414-0005<br>静岡県伊東市銀座元町6-11<br>伊東商工会議所3F</p>
+<p style="margin-top:8px;">TEL 0557-36-6070<br>FAX 0557-36-6030</p>
+<div class="it-foot-sns"><a href="#">IG</a><a href="#">X</a><a href="#">FB</a><a href="#">YT</a></div>
+</div>
+<div>
+<div class="it-foot-h">MENU</div>
+<a href="#">HOME</a><a href="#">ABOUT</a><a href="#">PROJECT</a><a href="#">NEWS</a><a href="#">JOIN</a><a href="#">CONTACT</a>
+</div>
+<div>
+<div class="it-foot-h">RELATED</div>
+<a href="#">公益社団法人 日本青年会議所</a><a href="#">静岡ブロック協議会</a><a href="#">個人情報保護方針</a>
+</div>
+</div>
+<div class="it-foot-bot">© 一般社団法人 伊東青年会議所</div>
+</footer>
+
+</div>
+</div>
+
+<div class="preview-device">
+<div class="preview-label"><span>●</span>DESKTOP / 1440PX · FULL PAGE</div>
+<div class="it-page it-page-p">
+
+<header class="it-head it-head-p">
+<div class="it-logo"><div class="it-lmk">LOGO</div><div class="it-ltxt"><b>伊東青年会議所</b><small>JCI ITO</small></div></div>
+<nav class="it-nav-p">
+<a href="#">ABOUT<small>について</small></a>
+<a href="#">PROJECT<small>事業</small></a>
+<a href="#">NEWS<small>お知らせ</small></a>
+<a href="#">JOIN<small>入会案内</small></a>
+<a href="#" class="it-nav-cta">CONTACT<small>お問合せ</small></a>
+</nav>
+</header>
+
+<section class="it-hero it-hero-p">
+<svg class="it-scene" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="skP" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#f4faff"/><stop offset="40%" stop-color="#b5dfff"/>
+<stop offset="75%" stop-color="#7ac8ee"/><stop offset="100%" stop-color="#59b6e0"/>
+</linearGradient></defs>
+<rect width="900" height="210" fill="url(#skP)"/>
+<circle cx="770" cy="85" r="54" fill="#fff5d8" opacity="0.55"/>
+<circle cx="770" cy="85" r="34" fill="#ffd76b" opacity="0.92"/>
+<ellipse cx="150" cy="115" rx="65" ry="9" fill="#fff" opacity="0.95"/>
+<ellipse cx="195" cy="120" rx="42" ry="7" fill="#fff" opacity="0.85"/>
+<ellipse cx="480" cy="155" rx="58" ry="9" fill="#fff" opacity="0.8"/>
+<line x1="120" y1="55" x2="150" y2="68" stroke="#fff" stroke-width="1.5" opacity="0.9"/>
+<circle cx="152" cy="69" r="1.8" fill="#fff"/>
+<path d="M 0,200 Q 100,170 200,200 Q 250,215 270,210 L 0,210 Z" fill="#8ec9dc" opacity="0.85"/>
+<path d="M -30,210 C 40,210 130,110 220,108 C 310,110 365,210 400,210 L 900,210 L 900,218 L -30,218 Z" fill="#6ec6d8"/>
+<rect y="210" width="900" height="310" fill="#6ec6d8"/>
+<path d="M 0,235 Q 120,230 240,235 T 480,235 T 720,235 T 900,235 L 900,250 L 0,250 Z" fill="#fff" opacity="0.3"/>
+<path d="M 0,280 Q 160,275 320,280 T 640,280 T 900,280 L 900,296 L 0,296 Z" fill="#fff" opacity="0.22"/>
+<path d="M 0,330 Q 120,325 240,330 T 480,330 T 720,330 T 900,330 L 900,345 L 0,345 Z" fill="#fff" opacity="0.18"/>
+<path d="M 0,385 Q 160,380 320,385 T 640,385 T 900,385 L 900,402 L 0,402 Z" fill="#fff" opacity="0.15"/>
+<path d="M 0,445 Q 200,440 400,445 T 800,445 T 900,445 L 900,465 L 0,465 Z" fill="#fff" opacity="0.12"/>
+<path d="M -30,210 C 40,210 130,110 220,108 C 310,110 365,210 400,210 L 400,220 C 350,215 305,178 260,148 C 235,130 225,118 220,108 Z" fill="#a9d188" opacity="0.8"/>
+<path d="M -30,210 C 40,210 130,110 220,108 L 220,125 C 170,140 120,170 70,195 C 30,210 0,210 -30,210 Z" fill="#4e7d43" opacity="0.3"/>
+<ellipse cx="720" cy="222" rx="22" ry="2" fill="#2a3a4a" opacity="0.4"/>
+</svg>
+<div class="it-lighten"></div>
+<div class="it-hero-content it-hero-content-p">
+<div class="it-badge">
+<div class="it-ring"></div>
+<b>2026 SLOGAN</b>
+<span class="it-badge-div"></span>
+<span>満たされるまちをつくる</span>
+<span class="it-badge-div"></span>
+<strong>SATISFACTION</strong>
+</div>
+<div class="it-rule"></div>
+<h1 class="it-title-p"><span class="it-tp">まちを、</span><span class="it-tp"><span class="it-tac">動</span>かす。</span></h1>
+<p class="it-sub-p">今、ここから未来が動き出す。</p>
+<p class="it-en-p">JUNIOR CHAMBER INTERNATIONAL ITO</p>
+<div class="it-cta-p">
+<button class="it-btn it-btn-p it-btn-pri">入会案内<span class="it-ar">→</span></button>
+<button class="it-btn it-btn-p it-btn-ghost">お問合せ</button>
+</div>
+</div>
+</section>
+
+<section class="it-sec it-sec-p">
+<div class="it-sec-kick">PRESIDENT'S MESSAGE</div>
+<h2 class="it-sec-head-p">満たされるまちを、この手で。</h2>
+<p class="it-sec-sub-p">2026年度 理事長所信</p>
+<div class="it-pres it-pres-p">
+<div class="it-pres-img it-pres-img-p">PORTRAIT</div>
+<div>
+<div class="it-pres-meta">2026年度 第◯代 理事長　◯◯ ◯◯</div>
+<h3 class="it-pres-title it-pres-title-p">大室山の麓から、<br>未来への問いを立てる。</h3>
+<p class="it-pres-body it-pres-body-p">大室山から望む伊豆の海、城ヶ崎に打ち寄せる波、温泉街の湯けむり——伊東は、誰もがふるさとと呼びたくなる景色と情感に満ちたまちです。しかし時代の流れは急速で、私たちの世代が動かなければ、このまちの価値は静かに摩耗してしまう。SATISFACTION——満たされるまちの条件とは何か。その問いに仲間と向き合い、答えを紡ぐ一年にしたいと考えています。</p>
+<a href="#" class="it-link">所信全文を読む<span>→</span></a>
+</div>
+</div>
+</section>
+
+<section class="it-sec it-sec-p it-sec-alt">
+<div class="it-sec-kick">ABOUT US</div>
+<h2 class="it-sec-head-p">伊東から、志で動き出す青年たち。</h2>
+<p class="it-sec-sub-p">伊東青年会議所について</p>
+<p class="it-about-intro it-about-intro-p">1949年に始まったJC運動は「明るい豊かな社会」の実現を掲げ、全国へ広がりました。伊東青年会議所は、その志を受け継ぎ、20〜40歳の青年経済人が地域の未来のために集う一般社団法人です。大室山の麓、温泉と海のまち伊東から、三信条のもと日々活動しています。</p>
+<div class="it-pillars it-pillars-p">
+<div class="it-pil"><div class="it-pil-num">01</div><div class="it-pil-ja">修練</div><div class="it-pil-en">TRAINING</div><p class="it-pil-desc">青年らしい純粋な情熱と実践を通じて、社会に求められるリーダーとして自らを鍛える場。</p></div>
+<div class="it-pil"><div class="it-pil-num">02</div><div class="it-pil-ja">奉仕</div><div class="it-pil-en">SERVICE</div><p class="it-pil-desc">伊東の地域課題に、青年ならではの行動力とスピードで応える。成果ではなく汗を流す覚悟。</p></div>
+<div class="it-pil"><div class="it-pil-num">03</div><div class="it-pil-ja">友情</div><div class="it-pil-en">FRIENDSHIP</div><p class="it-pil-desc">業種も立場も越えて同志となる、生涯つづく仲間との出会いがここにある。</p></div>
+</div>
+<div class="it-stats it-stats-p">
+<div class="it-st"><div class="it-st-n it-st-n-p">1970</div><div class="it-st-u">FOUNDED</div><div class="it-st-l">創立年（仮）</div></div>
+<div class="it-st"><div class="it-st-n it-st-n-p">30<span style="font-size:16px">名</span></div><div class="it-st-u">MEMBERS</div><div class="it-st-l">会員数（仮）</div></div>
+<div class="it-st"><div class="it-st-n it-st-n-p">20+</div><div class="it-st-u">PROJECTS</div><div class="it-st-l">年間事業数</div></div>
+</div>
+</section>
+
+<section class="it-sec it-sec-p">
+<div class="it-sec-kick">OUR PROJECTS</div>
+<h2 class="it-sec-head-p">伊東の未来をつくる、年間の活動。</h2>
+<p class="it-sec-sub-p">事業・イベント</p>
+<div class="it-proj-grid it-proj-grid-p">
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">講演会</span></div><div class="it-proj-body"><div class="it-proj-date">2026.04.26</div><div class="it-proj-title">ITO FUTURE JAM 〜今、ここから未来が動きだす〜</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">組織</span></div><div class="it-proj-body"><div class="it-proj-date">2026.04.07</div><div class="it-proj-title">2026年度 会頭公式訪問</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">ブロック</span></div><div class="it-proj-body"><div class="it-proj-date">2026.02.06</div><div class="it-proj-title">静岡ブロック協議会 第1回会員会議所会議</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">地域連携</span></div><div class="it-proj-body"><div class="it-proj-date">2026.04.07</div><div class="it-proj-title">伊東ロータリークラブ 創立70周年記念式典</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">例会</span></div><div class="it-proj-body"><div class="it-proj-date">2025.12.13</div><div class="it-proj-title">12月例会・卒業式</div></div></div>
+<div class="it-proj"><div class="it-proj-img">PHOTO<span class="it-proj-cat">青少年</span></div><div class="it-proj-body"><div class="it-proj-date">2025.08.20</div><div class="it-proj-title">わんぱく相撲 伊東場所（仮）</div></div></div>
+</div>
+</section>
+
+<section class="it-sec it-sec-p it-sec-alt">
+<div class="it-sec-kick">NEWS</div>
+<h2 class="it-sec-head-p">新着情報</h2>
+<p class="it-sec-sub-p">活動のお知らせ</p>
+<div class="it-news">
+<div class="it-news-row"><div class="it-news-date">2026.04.07</div><div class="it-news-cat">お知らせ</div><div class="it-news-title">【再案内】ITO FUTURE JAM 〜今、ここから未来が動きだす〜 講演会開催のお知らせ</div></div>
+<div class="it-news-row"><div class="it-news-date">2026.04.07</div><div class="it-news-cat">報告</div><div class="it-news-title">2026年度 会頭公式訪問を実施しました</div></div>
+<div class="it-news-row"><div class="it-news-date">2026.02.06</div><div class="it-news-cat">会議</div><div class="it-news-title">静岡ブロック協議会 第1回会員会議所会議 開催</div></div>
+<div class="it-news-row"><div class="it-news-date">2025.12.13</div><div class="it-news-cat">例会</div><div class="it-news-title">12月例会・卒業式 開催報告</div></div>
+</div>
+<div class="it-news-foot"><a href="#" class="it-link">お知らせ一覧<span>→</span></a></div>
+</section>
+
+<section class="it-sec it-sec-p">
+<div class="it-ig-head">
+<div><div class="it-sec-kick">INSTAGRAM</div><div class="it-ig-handle">@itojc</div></div>
+<a href="#" class="it-link">FOLLOW US<span>↗</span></a>
+</div>
+<div class="it-ig-grid it-ig-grid-p">
+<div class="it-ig-cell"><span>#大室山</span></div>
+<div class="it-ig-cell"><span>#例会</span></div>
+<div class="it-ig-cell"><span>#伊東</span></div>
+<div class="it-ig-cell"><span>#城ヶ崎</span></div>
+<div class="it-ig-cell"><span>#JC</span></div>
+<div class="it-ig-cell"><span>#按針祭</span></div>
+</div>
+</section>
+
+<section class="it-cta-sec it-cta-sec-p">
+<div class="it-cta-kick">JOIN US</div>
+<h2 class="it-cta-head it-cta-head-p">共に、このまちを動かす。</h2>
+<p class="it-cta-body it-cta-body-p">20〜40歳の青年経済人。伊東市内および近隣で活動する方。あなたの一歩が、伊東の未来を動かします。まずは入会説明会で、私たちの活動をご覧ください。</p>
+<a href="#" class="it-cta-btn">入会説明会に参加する →</a>
+</section>
+
+<footer class="it-foot it-foot-p">
+<div class="it-foot-grid it-foot-grid-p">
+<div>
+<div class="it-foot-logo"><div class="it-lmk">LOGO</div><div><b>伊東青年会議所</b><small>JCI ITO</small></div></div>
+<p>〒414-0005<br>静岡県伊東市銀座元町6-11<br>伊東商工会議所3F</p>
+<p style="margin-top:8px;">TEL 0557-36-6070<br>FAX 0557-36-6030</p>
+<div class="it-foot-sns"><a href="#">IG</a><a href="#">X</a><a href="#">FB</a><a href="#">YT</a></div>
+</div>
+<div>
+<div class="it-foot-h">MENU</div>
+<a href="#">HOME</a><a href="#">ABOUT</a><a href="#">PROJECT</a><a href="#">NEWS</a>
+</div>
+<div>
+<div class="it-foot-h">JOIN</div>
+<a href="#">入会案内</a><a href="#">お問合せ</a><a href="#">会員専用</a>
+</div>
+<div>
+<div class="it-foot-h">RELATED</div>
+<a href="#">日本青年会議所</a><a href="#">静岡ブロック協議会</a><a href="#">個人情報保護方針</a>
+</div>
+</div>
+<div class="it-foot-bot">© 一般社団法人 伊東青年会議所　ALL RIGHTS RESERVED</div>
+</footer>
+
+</div>
+</div>
+
+</div>
+
+<div class="preview-footer">
+このプレビューは初期モックアップです。<br>
+本ファイルはローカルPCで開く、または静的ホスティング（GitHub Pages、Netlify Drop 等）にアップロードして関係者にURLで共有できます。<br>
+最終的な実装は Claude Code による WordPress 連携を想定しています。
+</div>
+
+</body>
+</html>
